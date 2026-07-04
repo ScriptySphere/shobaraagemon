@@ -1,738 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shobar Aage Mon — সবার আগে মন</title>
+  <meta name="description" content="A youth-led mental wellbeing community from Bangladesh. A safe space to belong, learn, connect, and grow.">
+  <meta name="theme-color" content="#F4EEE2">
 
-<title>Shobar Aage Mon (SAM)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30..100&family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Inter,sans-serif;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-background:#f7fbfa;
-color:#1d2d2b;
-line-height:1.6;
-}
-
-a{
-text-decoration:none;
-color:inherit;
-}
-
-img{
-max-width:100%;
-}
-
-.container{
-width:min(1200px,92%);
-margin:auto;
-}
-
-section{
-padding:90px 0;
-}
-
-h1,h2,h3{
-line-height:1.2;
-}
-
-.btn{
-display:inline-block;
-padding:14px 28px;
-border-radius:40px;
-font-weight:600;
-transition:.3s;
-}
-
-.primary{
-background:#1f7a6c;
-color:white;
-}
-
-.primary:hover{
-background:#176257;
-}
-
-.secondary{
-border:2px solid #1f7a6c;
-color:#1f7a6c;
-}
-
-.secondary:hover{
-background:#1f7a6c;
-color:white;
-}
-
-nav{
-position:fixed;
-width:100%;
-background:white;
-box-shadow:0 4px 15px rgba(0,0,0,.05);
-z-index:999;
-}
-
-.nav-inner{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 0;
-}
-
-.logo{
-font-size:22px;
-font-weight:800;
-color:#1f7a6c;
-}
-
-.menu{
-display:flex;
-gap:22px;
-font-size:15px;
-font-weight:600;
-}
-
-.hero{
-padding-top:170px;
-padding-bottom:120px;
-background:linear-gradient(135deg,#daf3ee,#f6fffd);
-}
-
-.hero-grid{
-display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:60px;
-align-items:center;
-}
-
-.hero h1{
-font-size:58px;
-margin-bottom:15px;
-}
-
-.hero p{
-font-size:20px;
-color:#5d6a68;
-margin-bottom:35px;
-}
-
-.hero-buttons{
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-}
-
-.hero-card{
-background:white;
-padding:35px;
-border-radius:30px;
-box-shadow:0 20px 40px rgba(0,0,0,.08);
-}
-
-.hero-card h3{
-margin-bottom:20px;
-}
-
-.hero-card div{
-padding:15px;
-background:#eff9f7;
-margin-top:12px;
-border-radius:15px;
-}
-
-.section-title{
-font-size:40px;
-margin-bottom:15px;
-text-align:center;
-}
-
-.section-sub{
-text-align:center;
-color:#667;
-margin-bottom:50px;
-}
-
-.mood-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:18px;
-}
-
-.mood{
-background:white;
-padding:28px;
-text-align:center;
-border-radius:20px;
-cursor:pointer;
-transition:.3s;
-box-shadow:0 8px 20px rgba(0,0,0,.05);
-}
-
-.mood:hover{
-transform:translateY(-6px);
-}
-
-.mood span{
-font-size:42px;
-display:block;
-margin-bottom:10px;
-}
-
-#validation{
-margin-top:35px;
-background:#1f7a6c;
-color:white;
-padding:28px;
-border-radius:20px;
-font-size:18px;
-display:none;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.card{
-background:white;
-padding:28px;
-border-radius:22px;
-box-shadow:0 10px 25px rgba(0,0,0,.05);
-}
-
-.card h3{
-margin-bottom:15px;
-}
-
-.tag{
-display:inline-block;
-background:#dff5ef;
-color:#176257;
-padding:5px 12px;
-border-radius:30px;
-font-size:13px;
-margin-bottom:12px;
-}
-
-.story{
-padding:20px;
-border-left:5px solid #1f7a6c;
-background:white;
-margin-bottom:20px;
-border-radius:12px;
-}
-
-.circle-card button{
-margin-top:20px;
-border:none;
-cursor:pointer;
-}
-
-.resources{
-display:flex;
-flex-wrap:wrap;
-gap:15px;
-justify-content:center;
-}
-
-.resource{
-padding:15px 24px;
-background:white;
-border-radius:40px;
-box-shadow:0 8px 20px rgba(0,0,0,.05);
-}
-
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:25px;
-}
-
-.product{
-background:white;
-padding:25px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,.05);
-}
-
-.community{
-background:#176257;
-color:white;
-border-radius:30px;
-padding:50px;
-}
-
-.wall{
-display:grid;
-gap:20px;
-margin-top:30px;
-}
-
-.note{
-background:rgba(255,255,255,.15);
-padding:20px;
-border-radius:15px;
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:20px;
-}
-
-.stat{
-background:white;
-padding:35px;
-text-align:center;
-border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,.05);
-}
-
-.stat h2{
-color:#1f7a6c;
-font-size:42px;
-}
-
-footer{
-background:#173331;
-color:white;
-padding:50px 0;
-text-align:center;
-margin-top:80px;
-}
-
-@media(max-width:900px){
-
-.hero-grid{
-grid-template-columns:1fr;
-}
-
-.hero h1{
-font-size:42px;
-}
-
-.menu{
-display:none;
-}
-
-}
-
-</style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<nav>
-<div class="container nav-inner">
+<a class="skip" href="#main">Skip to content</a>
 
-<div class="logo">
-SAM
-</div>
+<!-- ============ NAV ============ -->
+<header class="nav" data-nav>
+  <div class="nav__inner">
+    <a href="index.html" class="brand" aria-label="Shobar Aage Mon — home">
+      <span class="brand__mark" aria-hidden="true">
+        <!-- Small kantha-inspired mark: two stitched threads meeting -->
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M4 22 Q10 12 16 22 T28 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M4 14 Q10 4 16 14 T28 14" stroke="#234E4A" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.65"/>
+        </svg>
+      </span>
+      <span class="brand__name">SAM<span class="brand__sub">সবার আগে মন</span></span>
+    </a>
 
-<div class="menu">
-<a href="#">Home</a>
-<a href="#">Circles</a>
-<a href="#">Stories</a>
-<a href="#">Resources</a>
-<a href="#">Professionals</a>
-<a href="#">Products</a>
-<a href="#">Collaborate</a>
-<a href="#">About</a>
-</div>
+    <ul class="nav__links">
+      <li><a class="nav__link" href="index.html" aria-current="page">Home</a></li>
+      <li><a class="nav__link" href="circles.html">Circles</a></li>
+      <li><a class="nav__link" href="stories.html">Stories</a></li>
+      <li><a class="nav__link" href="resources.html">Resources</a></li>
+      <li><a class="nav__link" href="about.html">About</a></li>
+    </ul>
 
-</div>
-</nav>
+    <a href="circles.html" class="nav__cta">Join a Circle</a>
 
+    <button class="nav__toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
 <section class="hero">
+  <div class="hero__ambient" data-ambient>
+    <span class="blob blob--1"></span>
+    <span class="blob blob--2"></span>
+    <span class="blob blob--3"></span>
+    <div data-seeds></div>
+  </div>
 
-<div class="container hero-grid">
+  <div class="hero__inner">
+    <p class="eyebrow hero__eyebrow reveal">A youth-led mental wellbeing community · from Bangladesh</p>
 
-<div>
+    <h1 class="hero__title reveal" data-delay="1">
+      সবার আগে<br>
+      <span class="accent">মন&thinsp;।</span>
+    </h1>
 
-<h1>সবার আগে মন।</h1>
+    <p class="hero__sub reveal" data-delay="2">
+      Because before work, before grades, before anything &mdash; the mind comes first.
+    </p>
 
-<p>
-A safe space to learn, connect, and care for your mental well-being.
-</p>
+    <p class="hero__meaning reveal" data-delay="3">
+      A place to be heard before you seek help. Real stories, small support circles, and gentle learning &mdash; built by young people, for young people.
+    </p>
 
-<div class="hero-buttons">
+    <div class="hero__actions reveal" data-delay="4">
+      <a href="circles.html" class="btn btn--primary">
+        Join a Circle
+        <span class="btn__arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a href="stories.html" class="btn btn--ghost">Read a story</a>
+    </div>
 
-<a class="btn primary">Join a Circle</a>
-
-<a class="btn secondary">Explore Resources</a>
-
-</div>
-
-</div>
-
-<div class="hero-card">
-
-<h3>Belong → Learn → Connect → Grow</h3>
-
-<div>🌱 Find your community</div>
-<div>💚 Share your story</div>
-<div>🤝 Learn together</div>
-<div>✨ Grow with support</div>
-
-</div>
-
-</div>
-
+    <span class="stitch stitch--short reveal" data-delay="5" aria-hidden="true"></span>
+  </div>
 </section>
 
-<section>
+<!-- ============ MOOD CHECK-IN ============ -->
+<section class="mood section--warm">
+  <div class="mood__inner">
+    <div class="reveal">
+      <p class="eyebrow">A gentle check-in</p>
+      <h2 class="mood__q h-bangla">আজ আপনার কেমন লাগছে?</h2>
+      <p class="mood__q-en">How are you feeling today?</p>
+    </div>
 
-<div class="container">
+    <div class="mood__grid reveal" data-delay="1" data-mood role="group" aria-label="Mood options">
+      <button class="mood__btn" data-mood="overwhelmed" aria-pressed="false">
+        <span class="mood__emoji" aria-hidden="true">😔</span>
+        <span class="mood__label">Overwhelmed</span>
+      </button>
+      <button class="mood__btn" data-mood="lonely" aria-pressed="false">
+        <span class="mood__emoji" aria-hidden="true">😞</span>
+        <span class="mood__label">Lonely</span>
+      </button>
+      <button class="mood__btn" data-mood="stressed" aria-pressed="false">
+        <span class="mood__emoji" aria-hidden="true">😣</span>
+        <span class="mood__label">Stressed</span>
+      </button>
+      <button class="mood__btn" data-mood="confused" aria-pressed="false">
+        <span class="mood__emoji" aria-hidden="true">😕</span>
+        <span class="mood__label">Confused</span>
+      </button>
+      <button class="mood__btn" data-mood="okay" aria-pressed="false">
+        <span class="mood__emoji" aria-hidden="true">🙂</span>
+        <span class="mood__label">Okay</span>
+      </button>
+      <button class="mood__btn" data-mood="hopeful" aria-pressed="false">
+        <span class="mood__emoji" aria-hidden="true">😊</span>
+        <span class="mood__label">Hopeful</span>
+      </button>
+    </div>
 
-<h2 class="section-title">
-How are you feeling today?
-</h2>
-
-<p class="section-sub">
-You are welcome here, exactly as you are.
-</p>
-
-<div class="mood-grid">
-
-<div class="mood" onclick="showMessage('Feeling overwhelmed doesn’t mean you are weak. Sometimes it simply means you have been carrying too much for too long.')">
-<span>😔</span>
-Overwhelmed
-</div>
-
-<div class="mood" onclick="showMessage('Feeling lonely does not mean you are alone forever. Connection often begins with one small conversation.')">
-<span>😞</span>
-Lonely
-</div>
-
-<div class="mood" onclick="showMessage('Stress is a signal, not a personal failure. Be kind to yourself today.')">
-<span>😣</span>
-Stressed
-</div>
-
-<div class="mood" onclick="showMessage('It is okay not to have every answer. Growth often begins with uncertainty.')">
-<span>😕</span>
-Confused
-</div>
-
-<div class="mood" onclick="showMessage('Glad to hear you are doing okay. Remember to keep caring for yourself.')">
-<span>🙂</span>
-Okay
-</div>
-
-<div class="mood" onclick="showMessage('Hold onto that hope. Your future self will thank you for it.')">
-<span>😊</span>
-Hopeful
-</div>
-
-</div>
-
-<div id="validation"></div>
-
-</div>
-
+    <div class="mood__response" data-mood-response aria-live="polite">
+      <span class="stitch stitch--short" aria-hidden="true"></span>
+      <p class="mood__response-title" data-mood-title></p>
+      <p class="mood__response-body" data-mood-body></p>
+      <p class="mood__response-meta" data-mood-meta></p>
+    </div>
+  </div>
 </section>
 
-<section>
+<!-- ============ CIRCLES PREVIEW ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="eyebrow">Find your circle</p>
+      <h2>Small groups. Real conversations. No advice unless you ask.</h2>
+      <p class="lead">Support Circles are gentle spaces to be listened to. Not therapy &mdash; community. Meet regularly, share what you want, keep what you don&rsquo;t.</p>
+    </div>
 
-<div class="container">
+    <div class="grid grid--3">
+      <article class="card circle-card reveal">
+        <span class="circle-card__tag">Dhaka</span>
+        <h3>Dhaka Circle</h3>
+        <p>Meets in-person, once a fortnight, in a quiet corner of Dhanmondi. For anyone who wants to talk without a screen in between.</p>
+        <div class="circle-card__meta">
+          <span><strong>32</strong> members</span>
+          <span>Every other Saturday</span>
+        </div>
+      </article>
 
-<h2 class="section-title">Real Stories</h2>
+      <article class="card circle-card reveal" data-delay="1">
+        <span class="circle-card__tag circle-card__tag--online">Online</span>
+        <h3>Online Circle</h3>
+        <p>For anyone outside a big city, or anyone who&rsquo;d rather show up from home. Video optional. Silence is welcome.</p>
+        <div class="circle-card__meta">
+          <span><strong>58</strong> members</span>
+          <span>Weekly · Wednesdays</span>
+        </div>
+      </article>
 
-<div class="story">
-Relationship struggles and learning how to communicate.
-</div>
+      <article class="card circle-card reveal" data-delay="2">
+        <span class="circle-card__tag circle-card__tag--university">University</span>
+        <h3>Chittagong University Circle</h3>
+        <p>Run by student ambassadors on campus. Between exams, deadlines, and the noise of hall life &mdash; a place to breathe.</p>
+        <div class="circle-card__meta">
+          <span><strong>24</strong> members</span>
+          <span>Weekly · Thursdays</span>
+        </div>
+      </article>
+    </div>
 
-<div class="story">
-Managing academic pressure without losing yourself.
-</div>
-
-<div class="story">
-Career uncertainty and finding your own path.
-</div>
-
-<div class="story">
-Family conflict, healing, and rebuilding trust.
-</div>
-
-</div>
-
+    <div class="reveal" data-delay="3" style="margin-top:2.5rem;">
+      <a href="circles.html" class="btn btn--ghost">See all circles <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
 </section>
 
-<section>
+<!-- ============ STORIES PREVIEW ============ -->
+<section class="section section--warm">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="eyebrow">Real stories · shared anonymously</p>
+      <h2>The heart of SAM is a story someone else was brave enough to tell.</h2>
+      <p class="lead">80% of what we publish comes from real people writing under a pseudonym. Reading one might be the moment you realise you&rsquo;re not the only one.</p>
+    </div>
 
-<div class="container">
+    <div class="grid grid--3">
+      <a href="stories.html" class="story story--feature reveal">
+        <span class="story__cat">Academic Pressure</span>
+        <h3 class="story__title">I failed one paper and thought my whole life was over. It wasn&rsquo;t.</h3>
+        <p class="story__excerpt">Everyone at home was quiet at dinner for a week. Not angry &mdash; just quiet. That was almost worse. Here&rsquo;s how I slowly stopped apologising for being human.</p>
+        <div class="story__foot">
+          <span>Anonymous · 6 min read</span>
+          <span class="story__read">Read story <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
 
-<h2 class="section-title">
-Find Your Circle
-</h2>
+      <a href="stories.html" class="story reveal" data-delay="1">
+        <span class="story__cat">Loneliness</span>
+        <h3 class="story__title">I moved to a new city and forgot how to make friends.</h3>
+        <p class="story__excerpt">There were people around all day. I still went home and didn&rsquo;t speak until morning. This is how a Circle became my Tuesday evening.</p>
+        <div class="story__foot">
+          <span>Anonymous · 4 min read</span>
+          <span class="story__read">Read story <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
 
-<div class="cards">
+      <a href="stories.html" class="story reveal" data-delay="2">
+        <span class="story__cat">Family</span>
+        <h3 class="story__title">Loving my parents and setting a boundary aren&rsquo;t opposites.</h3>
+        <p class="story__excerpt">It took me twenty-three years to say &ldquo;no&rdquo; to my mother without hating myself for it. I&rsquo;m still learning. So is she.</p>
+        <div class="story__foot">
+          <span>Anonymous · 5 min read</span>
+          <span class="story__read">Read story <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+    </div>
 
-<div class="card circle-card">
-<h3>Dhaka Circle</h3>
-<p>Members: 120</p>
-<p>Weekly Meeting</p>
-<button class="btn primary">Join</button>
-</div>
-
-<div class="card circle-card">
-<h3>Chittagong University</h3>
-<p>Members: 80</p>
-<p>Bi-weekly</p>
-<button class="btn primary">Join</button>
-</div>
-
-<div class="card circle-card">
-<h3>Online Circle</h3>
-<p>Members: 250</p>
-<p>Every Saturday</p>
-<button class="btn primary">Join</button>
-</div>
-
-<div class="card circle-card">
-<h3>Women's Circle</h3>
-<p>Members: 60</p>
-<p>Monthly</p>
-<button class="btn primary">Join</button>
-</div>
-
-</div>
-
-</div>
-
+    <div class="reveal" data-delay="3" style="margin-top:2.5rem;">
+      <a href="stories.html" class="btn btn--ghost">Read more stories <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
 </section>
 
-<section>
+<!-- ============ COMMUNITY WALL ============ -->
+<section class="wall">
+  <div class="wrap">
+    <div class="section__head section__head--center reveal">
+      <p class="eyebrow">The community wall</p>
+      <h2>Small things people wanted to say out loud.</h2>
+      <p class="lead" style="text-align:center; margin:0 auto;">Anonymous notes from the SAM community. Not advice &mdash; just company.</p>
+    </div>
 
-<div class="container">
-
-<h2 class="section-title">
-Self Help Resources
-</h2>
-
-<div class="resources">
-
-<div class="resource">Stress</div>
-<div class="resource">Anxiety</div>
-<div class="resource">Relationships</div>
-<div class="resource">Academic Pressure</div>
-<div class="resource">Career</div>
-<div class="resource">Burnout</div>
-<div class="resource">Sleep</div>
-<div class="resource">Self Esteem</div>
-
-</div>
-
-</div>
-
+    <div class="wall__grid reveal" data-delay="1">
+      <blockquote class="whisper">
+        &ldquo;Today I finally rested without feeling guilty. It was the hardest thing I did all week.&rdquo;
+        <div class="whisper__foot">— Anon, Dhaka</div>
+      </blockquote>
+      <blockquote class="whisper">
+        &ldquo;You&rsquo;re doing better than you think. I promise. From a stranger who&rsquo;s been there.&rdquo;
+        <div class="whisper__foot">— Anon</div>
+      </blockquote>
+      <blockquote class="whisper">
+        &ldquo;I asked for help today. Out loud. To an actual person.&rdquo;
+        <div class="whisper__foot">— Anon, Sylhet</div>
+      </blockquote>
+      <blockquote class="whisper">
+        &ldquo;My mother made me tea without saying anything. I think she knew.&rdquo;
+        <div class="whisper__foot">— Anon</div>
+      </blockquote>
+      <blockquote class="whisper">
+        &ldquo;I smiled again. Twice this week. It counts.&rdquo;
+        <div class="whisper__foot">— Anon</div>
+      </blockquote>
+      <blockquote class="whisper">
+        &ldquo;Deleted the app. Slept nine hours. Feel like a person.&rdquo;
+        <div class="whisper__foot">— Anon, Chittagong</div>
+      </blockquote>
+      <blockquote class="whisper">
+        &ldquo;Whoever needs to hear it: your version of &lsquo;fine&rsquo; is allowed to be small.&rdquo;
+        <div class="whisper__foot">— Anon</div>
+      </blockquote>
+      <blockquote class="whisper">
+        &ldquo;Cried in the rickshaw. The uncle didn&rsquo;t say anything. He drove slower. That&rsquo;s community.&rdquo;
+        <div class="whisper__foot">— Anon, Dhaka</div>
+      </blockquote>
+      <blockquote class="whisper">
+        &ldquo;Signed up for a Circle. I&rsquo;m nervous. That&rsquo;s okay.&rdquo;
+        <div class="whisper__foot">— Anon</div>
+      </blockquote>
+    </div>
+  </div>
 </section>
 
-<section>
+<!-- ============ IMPACT ============ -->
+<section class="impact section--forest">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="eyebrow">What we&rsquo;ve built together, so far</p>
+      <h2>Numbers can&rsquo;t tell the whole story. But they can start it.</h2>
+    </div>
 
-<div class="container">
-
-<h2 class="section-title">
-Professional Support
-</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>Psychologists</h3>
-<p>Find professionals by city, language, fee and online availability.</p>
-</div>
-
-<div class="card">
-<h3>Psychiatrists</h3>
-<p>Trusted referrals across Bangladesh.</p>
-</div>
-
-<div class="card">
-<h3>Counsellors</h3>
-<p>Support for students, adults and families.</p>
-</div>
-
-</div>
-
-</div>
-
+    <div class="impact__grid">
+      <div class="stat reveal">
+        <div class="stat__num" data-count="1240" data-suffix="+"></div>
+        <div class="stat__label">Community members</div>
+      </div>
+      <div class="stat reveal" data-delay="1">
+        <div class="stat__num" data-count="12"></div>
+        <div class="stat__label">Circles running</div>
+      </div>
+      <div class="stat reveal" data-delay="2">
+        <div class="stat__num" data-count="86"></div>
+        <div class="stat__label">Volunteers</div>
+      </div>
+      <div class="stat reveal" data-delay="3">
+        <div class="stat__num" data-count="147"></div>
+        <div class="stat__label">Stories published</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section>
-
-<div class="container">
-
-<h2 class="section-title">
-Wear Your Support
-</h2>
-
-<div class="products">
-
-<div class="product">📚 Bookmark</div>
-<div class="product">💚 Sticker Pack</div>
-<div class="product">🔑 Wooden Keyring</div>
-<div class="product">🥤 Water Bottle</div>
-<div class="product">🎁 Care Box</div>
-
-</div>
-
-<p style="text-align:center;margin-top:30px;">
-Every purchase helps us build safer mental health communities.
-</p>
-
-</div>
-
+<!-- ============ CTA BAND ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div>
+        <span class="stitch stitch--short" aria-hidden="true"></span>
+        <h2>We can&rsquo;t promise life will be easy.<br>We can promise you won&rsquo;t go through it alone.</h2>
+      </div>
+      <div class="cta-band__side">
+        <a href="circles.html" class="btn btn--primary">Find a Circle <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+        <a href="about.html" class="btn btn--ghost">Volunteer with SAM</a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section>
+</main>
 
-<div class="container community">
-
-<h2>
-Community Wall
-</h2>
-
-<div class="wall">
-
-<div class="note">
-Today I finally took a break without feeling guilty.
-</div>
-
-<div class="note">
-You are doing better than you think.
-</div>
-
-<div class="note">
-Small steps are still progress.
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<div class="container">
-
-<h2 class="section-title">
-Collaborate With SAM
-</h2>
-
-<div class="cards">
-
-<div class="card">Universities</div>
-
-<div class="card">NGOs</div>
-
-<div class="card">Companies</div>
-
-<div class="card">Volunteers</div>
-
-<div class="card">Content Creators</div>
-
-<div class="card">Mental Health Professionals</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<div class="container">
-
-<h2 class="section-title">
-Our Impact
-</h2>
-
-<div class="stats">
-
-<div class="stat">
-<h2>2,300+</h2>
-Members
-</div>
-
-<div class="stat">
-<h2>18</h2>
-Circles
-</div>
-
-<div class="stat">
-<h2>120</h2>
-Volunteers
-</div>
-
-<div class="stat">
-<h2>350</h2>
-Sessions
-</div>
-
-<div class="stat">
-<h2>9,800+</h2>
-Youth Reached
-</div>
-
-<div class="stat">
-<h2>140</h2>
-Stories
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<footer>
-
-<div class="container">
-
-<h2>Shobar Aage Mon (SAM)</h2>
-
-<p>
-Building communities where everyone feels seen, heard and supported.
-</p>
-
-<br>
-
-<p>
-Belong • Learn • Connect • Grow
-</p>
-
-</div>
-
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <h3>Before everything else, comes the mind.</h3>
+        <p>Shobar Aage Mon is a youth-led mental wellbeing community based in Bangladesh. Belong. Learn. Connect. Grow.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="circles.html">Support Circles</a></li>
+          <li><a href="stories.html">Real Stories</a></li>
+          <li><a href="resources.html">Resource Library</a></li>
+          <li><a href="about.html">About SAM</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get involved</h4>
+        <ul>
+          <li><a href="about.html">Volunteer</a></li>
+          <li><a href="about.html">Submit a story</a></li>
+          <li><a href="about.html">Partner with us</a></li>
+          <li><a href="about.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="#" aria-label="Facebook">Facebook</a></li>
+          <li><a href="#" aria-label="Instagram">Instagram</a></li>
+          <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span data-year></span> Shobar Aage Mon · Made with care.</span>
+      <span>SAM does not replace professional support. If you are in crisis, please contact a helpline.</span>
+    </div>
+  </div>
 </footer>
 
-<script>
-
-function showMessage(message){
-
-let box=document.getElementById("validation");
-
-box.style.display="block";
-
-box.innerHTML=message;
-
-}
-
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>

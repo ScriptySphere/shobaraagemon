@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Stories — Shobar Aage Mon</title>
+  <meta name="description" content="Anonymous stories from the SAM community — because reading one might be the moment you realise you're not the only one.">
+  <meta name="theme-color" content="#F4EEE2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30..100&family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" data-nav>
+  <div class="nav__inner">
+    <a href="index.html" class="brand" aria-label="Shobar Aage Mon — home">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M4 22 Q10 12 16 22 T28 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M4 14 Q10 4 16 14 T28 14" stroke="#234E4A" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.65"/>
+        </svg>
+      </span>
+      <span class="brand__name">SAM<span class="brand__sub">সবার আগে মন</span></span>
+    </a>
+    <ul class="nav__links">
+      <li><a class="nav__link" href="index.html">Home</a></li>
+      <li><a class="nav__link" href="circles.html">Circles</a></li>
+      <li><a class="nav__link" href="stories.html" aria-current="page">Stories</a></li>
+      <li><a class="nav__link" href="resources.html">Resources</a></li>
+      <li><a class="nav__link" href="about.html">About</a></li>
+    </ul>
+    <a href="#submit" class="nav__cta">Share your story</a>
+    <button class="nav__toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="page-head">
+  <div class="hero__ambient" data-ambient>
+    <span class="blob blob--1"></span>
+    <span class="blob blob--3"></span>
+  </div>
+  <div class="wrap" style="position:relative;z-index:2;">
+    <p class="eyebrow page-head__eyebrow reveal">Real stories, shared anonymously</p>
+    <h1 class="page-head__title reveal" data-delay="1">Because reading one might be the moment you realise you&rsquo;re not the only one.</h1>
+    <p class="lead page-head__lead reveal" data-delay="2">
+      80% of what SAM publishes is a real story from a real person, written under a name that isn&rsquo;t theirs. Every one of them has helped someone else feel less alone.
+    </p>
+    <div class="reveal" data-delay="3" style="margin-top:1.75rem;">
+      <span class="stitch stitch--short" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="chips reveal" data-filter="stories" role="group" aria-label="Filter stories by theme">
+      <button class="chip is-on" data-val="all">All themes</button>
+      <button class="chip" data-val="academic">Academic pressure</button>
+      <button class="chip" data-val="career">Career</button>
+      <button class="chip" data-val="family">Family</button>
+      <button class="chip" data-val="loneliness">Loneliness</button>
+      <button class="chip" data-val="relationships">Relationships</button>
+      <button class="chip" data-val="selfworth">Self-worth</button>
+      <button class="chip" data-val="burnout">Burnout</button>
+    </div>
+
+    <div class="grid grid--3" data-filter-target="stories">
+
+      <a href="#" class="story story--feature reveal" data-cat="academic">
+        <span class="story__cat">Academic Pressure</span>
+        <h3 class="story__title">I failed one paper and thought my whole life was over. It wasn&rsquo;t.</h3>
+        <p class="story__excerpt">Everyone at home was quiet at dinner for a week. Not angry &mdash; just quiet. That was almost worse. Here&rsquo;s how I slowly stopped apologising for being human.</p>
+        <div class="story__foot">
+          <span>Anonymous · 6 min read</span>
+          <span class="story__read">Read story <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+
+      <a href="#" class="story reveal" data-cat="loneliness" data-delay="1">
+        <span class="story__cat">Loneliness</span>
+        <h3 class="story__title">I moved to a new city and forgot how to make friends.</h3>
+        <p class="story__excerpt">There were people around all day. I still went home and didn&rsquo;t speak until morning. This is how a Circle became my Tuesday evening.</p>
+        <div class="story__foot">
+          <span>Anonymous · 4 min read</span>
+          <span class="story__read">Read story <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+
+      <a href="#" class="story reveal" data-cat="family" data-delay="2">
+        <span class="story__cat">Family</span>
+        <h3 class="story__title">Loving my parents and setting a boundary aren&rsquo;t opposites.</h3>
+        <p class="story__excerpt">It took me twenty-three years to say &ldquo;no&rdquo; to my mother without hating myself for it. I&rsquo;m still learning. So is she.</p>
+        <div class="story__foot">
+          <span>Anonymous · 5 min read</span>
+          <span class="story__read">Read story <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+
+      <a href="#" class="story reveal" data-cat="burnout">
+        <span class="story__cat">Burnout</span>
+        <h3 class="story__title">I worked so hard I forgot what I was working for.</h3>
+        <p class="story__excerpt">The promotion came. So did the panic attacks. It took me a while to accept that these two things weren&rsquo;t unrelated.</p>
+        <div class="story__foot">
+          <span>Anonymous · 7 min read</span>
+          <span class="story__read">Read story <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+
+      <a href="#" class="story reveal" data-cat="career" data-delay="1">
+        <span class="story__cat">Career</span>
+        <h3 class="story__title">Everyone posted their new job. I was on my ninth rejection.</h3>
+        <p class="story__excerpt">I stopped opening LinkedIn for a month. It was one of the kindest things I&rsquo;ve ever done for myself.</p>
+        <div class="story__foot">
+          <span>Anonymous · 5 min read</span>
+          <span class="story__read">Read story <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+
+      <a href="#" class="story reveal" data-cat="selfworth" data-delay="2">
+        <span class="story__cat">Self-worth</span>
+        <h3 class="story__title">I mistook other people&rsquo;s approval for my personality.</h3>
+        <p class="story__excerpt">It took a year of slow, awkward practice to find out what I actually liked. Turns out I quite like quiet mornings and long walks.</p>
+        <div class="story__foot">
+          <span>Anonymous · 6 min read</span>
+          <span class="story__read">Read story <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+
+      <a href="#" class="story reveal" data-cat="relationships">
+        <span class="story__cat">Relationships</span>
+        <h3 class="story__title">I loved someone who didn&rsquo;t know how to be loved.</h3>
+        <p class="story__excerpt">Letting go didn&rsquo;t feel brave in the moment. It felt like failing. Now it feels like the beginning of something calmer.</p>
+        <div class="story__foot">
+          <span>Anonymous · 8 min read</span>
+          <span class="story__read">Read story <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+
+      <a href="#" class="story reveal" data-cat="family" data-delay="1">
+        <span class="story__cat">Family</span>
+        <h3 class="story__title">My father&rsquo;s silence taught me how to speak.</h3>
+        <p class="story__excerpt">He didn&rsquo;t know how to say the soft things. So I&rsquo;m learning to. For him, and for me.</p>
+        <div class="story__foot">
+          <span>Anonymous · 6 min read</span>
+          <span class="story__read">Read story <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+
+      <a href="#" class="story reveal" data-cat="academic" data-delay="2">
+        <span class="story__cat">Academic Pressure</span>
+        <h3 class="story__title">I got into the &ldquo;dream&rdquo; university and cried for a week.</h3>
+        <p class="story__excerpt">The dream was someone else&rsquo;s. Figuring out mine was harder than getting in.</p>
+        <div class="story__foot">
+          <span>Anonymous · 5 min read</span>
+          <span class="story__read">Read story <span aria-hidden="true">&rarr;</span></span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="section section--warm" id="submit">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div>
+        <span class="stitch stitch--short" aria-hidden="true"></span>
+        <h2>Your story could be the reason someone else feels less alone.</h2>
+        <p class="lead" style="margin-top:1rem;">Share yours anonymously. We&rsquo;ll edit it gently, protect your identity carefully, and only publish with your final go-ahead.</p>
+      </div>
+      <div class="cta-band__side">
+        <a href="mailto:stories@shobaraagemon.org" class="btn btn--primary">Submit a story <span class="btn__arrow" aria-hidden="true">&rarr;</span></a>
+        <a href="about.html" class="btn btn--ghost">How editing works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <h3>Before everything else, comes the mind.</h3>
+        <p>Shobar Aage Mon is a youth-led mental wellbeing community based in Bangladesh. Belong. Learn. Connect. Grow.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="circles.html">Support Circles</a></li>
+          <li><a href="stories.html">Real Stories</a></li>
+          <li><a href="resources.html">Resource Library</a></li>
+          <li><a href="about.html">About SAM</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get involved</h4>
+        <ul>
+          <li><a href="about.html">Volunteer</a></li>
+          <li><a href="about.html">Submit a story</a></li>
+          <li><a href="about.html">Partner with us</a></li>
+          <li><a href="about.html">Newsletter</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© <span data-year></span> Shobar Aage Mon · Made with care.</span>
+      <span>SAM does not replace professional support. If you are in crisis, please contact a helpline.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

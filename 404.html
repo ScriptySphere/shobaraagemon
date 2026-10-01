@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Link not found - Shobar Aage Mon</title>
+<meta name="robots" content="noindex">
+<style>
+  body{font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0;text-align:center;background:#f7f9fa;color:#243038}
+  a{color:#0e6b73;font-weight:600}
+</style>
+</head>
+<body>
+  <div id="box">
+    <h1>This link doesn't exist</h1>
+    <p>It may have been mistyped or removed.</p>
+    <p><a href="/">Go to Shobar Aage Mon</a></p>
+  </div>
+<script>
+// Instant fallback: if a link was added moments ago and its page isn't built yet,
+// look it up in links.json and redirect right away.
+(function () {
+  var m = location.pathname.match(/^\/post\/([a-z0-9][a-z0-9_-]*)\/?$/);
+  if (!m) return;
+  document.getElementById("box").innerHTML = "<p>Redirecting...</p>";
+  fetch("/links.json?t=" + Date.now(), { cache: "no-store" })
+    .then(function (r) { return r.json(); })
+    .then(function (list) {
+      var hit = list.find(function (l) { return l.code === m[1]; });
+      if (hit && /^https?:\/\//i.test(hit.url)) location.replace(hit.url);
+      else document.getElementById("box").innerHTML =
+        "<h1>This link doesn't exist</h1><p>It may have been mistyped or removed.</p><p><a href='/'>Go to Shobar Aage Mon</a></p>";
+    })
+    .catch(function () {});
+})();
+</script>
+</body>
+</html>

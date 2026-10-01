@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Short link manager - Shobar Aage Mon</title>
+<style>
+  :root{
+    --bg:#f4f7f7; --card:#ffffff; --ink:#1d2b30; --muted:#5a6b72; --line:#d9e2e4;
+    --brand:#0e6b73; --brand-ink:#ffffff; --danger:#b3261e; --ok:#1b7a43;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{--bg:#0f1719; --card:#162124; --ink:#e6eef0; --muted:#9fb1b7; --line:#2a3a3e;
+      --brand:#4fc3cd; --brand-ink:#06292c; --danger:#ff8a80; --ok:#6fdc9a;}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:760px;margin:0 auto;padding:20px 16px 60px}
+  h1{font-size:1.5rem;margin:8px 0 2px}
+  h2{font-size:1.1rem;margin:0 0 12px}
+  p.sub{margin:0 0 20px;color:var(--muted)}
+  section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+  label{display:block;font-weight:600;font-size:.9rem;margin:12px 0 4px}
+  input,textarea{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);font:inherit}
+  input:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--brand);outline-offset:1px}
+  textarea{min-height:70px;resize:vertical}
+  .hint{font-size:.82rem;color:var(--muted);margin-top:3px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.row{grid-template-columns:1fr}}
+  button{font:inherit;font-weight:600;border:0;border-radius:10px;padding:11px 18px;cursor:pointer;background:var(--brand);color:var(--brand-ink)}
+  button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  button.danger{background:transparent;color:var(--danger);border:1px solid var(--line)}
+  button:disabled{opacity:.55;cursor:wait}
+  .actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+  #msg{margin:0 0 16px;padding:12px 14px;border-radius:10px;display:none;border:1px solid var(--line);background:var(--card)}
+  #msg.ok{display:block;border-color:var(--ok);color:var(--ok)}
+  #msg.err{display:block;border-color:var(--danger);color:var(--danger)}
+  #msg.info{display:block;color:var(--muted)}
+  .result{display:none;margin-top:16px;padding:14px;border:1px dashed var(--brand);border-radius:10px;word-break:break-all}
+  .result strong{display:block;font-size:1.05rem;color:var(--brand);margin-bottom:8px}
+  ul{list-style:none;margin:0;padding:0}
+  li.item{padding:12px 0;border-top:1px solid var(--line);display:grid;gap:4px}
+  li.item:first-child{border-top:0}
+  .short{font-weight:700;color:var(--brand);word-break:break-all}
+  .long{color:var(--muted);font-size:.85rem;word-break:break-all}
+  .item .actions{margin-top:6px}
+  .item button{padding:6px 12px;font-size:.85rem}
+  details summary{cursor:pointer;font-weight:600}
+  details ol{padding-left:20px;color:var(--muted);font-size:.92rem}
+  code{background:var(--bg);padding:1px 6px;border-radius:5px;font-size:.88em}
+  input[type=search]{margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Short link manager</h1>
+  <p class="sub">Create short links like <code id="exampleUrl"></code> without editing any file.</p>
+
+  <div id="msg" role="status" aria-live="polite"></div>
+
+  <section id="setup">
+    <h2>Connect to GitHub (one time)</h2>
+    <details id="howto">
+      <summary>How to get your access token</summary>
+      <ol>
+        <li>Open GitHub, then Settings, Developer settings, Personal access tokens, Fine-grained tokens, Generate new token.</li>
+        <li>Repository access: choose <b>Only select repositories</b> and pick this repository.</li>
+        <li>Permissions, Repository permissions: set <b>Contents</b> to <b>Read and write</b>.</li>
+        <li>Generate, copy the token (starts with <code>github_pat_</code>) and paste it below.</li>
+      </ol>
+      <p class="hint">The token stays in this browser only. It is sent only to api.github.com.</p>
+    </details>
+    <div class="row">
+      <div><label for="owner">GitHub username</label><input id="owner" autocomplete="off"></div>
+      <div><label for="repo">Repository name</label><input id="repo" autocomplete="off"></div>
+    </div>
+    <div class="row">
+      <div><label for="branch">Branch</label><input id="branch" value="main" autocomplete="off"></div>
+      <div><label for="token">Access token</label><input id="token" type="password" autocomplete="off" placeholder="github_pat_..."></div>
+    </div>
+    <div class="actions">
+      <button id="saveSetup">Save and connect</button>
+      <button id="forget" class="ghost">Forget this browser</button>
+    </div>
+  </section>
+
+  <section id="create">
+    <h2>New short link</h2>
+    <label for="url">Long URL</label>
+    <input id="url" type="url" inputmode="url" placeholder="https://facebook.com/...">
+    <div class="row">
+      <div>
+        <label for="code">Custom ending (optional)</label>
+        <input id="code" autocomplete="off" placeholder="leave empty for a random one">
+        <div class="hint">Lowercase letters, numbers, - and _</div>
+      </div>
+      <div>
+        <label for="image">Preview image URL (optional)</label>
+        <input id="image" placeholder="/assets/og-image.jpg">
+        <div class="hint">Empty uses the default image</div>
+      </div>
+    </div>
+    <label for="title">Preview title (optional)</label>
+    <input id="title" maxlength="100">
+    <label for="desc">Preview description (optional)</label>
+    <textarea id="desc" maxlength="200"></textarea>
+    <div class="actions"><button id="create-btn">Create short link</button></div>
+    <div class="result" id="result" tabindex="-1">
+      <strong id="resultUrl"></strong>
+      <button id="copyNew" class="ghost">Copy link</button>
+      <div class="hint">Social previews work after about a minute, when the site finishes publishing. The link redirects right away.</div>
+    </div>
+  </section>
+
+  <section id="list">
+    <h2>Your links <span id="count" class="hint"></span></h2>
+    <input id="search" type="search" placeholder="Search links">
+    <ul id="items"></ul>
+    <p id="empty" class="hint">No links yet.</p>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var CODE_RE = /^[a-z0-9][a-z0-9_-]*$/;
+  var KEY = "sam_admin_v1";
+  var cfg = {};
+  var links = [];
+  var sha = null;
+
+  $("exampleUrl").textContent = location.host + "/post/xyz";
+
+  // ---------- helpers ----------
+  function msg(text, type) {
+    var m = $("msg");
+    m.className = type || "info";
+    m.textContent = text;
+    if (!text) m.className = "";
+  }
+  function b64enc(str) {
+    var bytes = new TextEncoder().encode(str), bin = "";
+    bytes.forEach(function (b) { bin += String.fromCharCode(b); });
+    return btoa(bin);
+  }
+  function b64dec(b64) {
+    var bin = atob(b64.replace(/\s/g, "")), arr = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+    return new TextDecoder().decode(arr);
+  }
+  function api(path, opts) {
+    opts = opts || {};
+    opts.headers = Object.assign({
+      "Accept": "application/vnd.github+json",
+      "Authorization": "Bearer " + cfg.token,
+      "X-GitHub-Api-Version": "2022-11-28"
+    }, opts.headers || {});
+    return fetch("https://api.github.com/repos/" + cfg.owner + "/" + cfg.repo + path, opts)
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (data) {
+          if (!r.ok) { var e = new Error(data.message || ("HTTP " + r.status)); e.status = r.status; throw e; }
+          return data;
+        });
+      });
+  }
+  function shortUrl(code) { return location.origin + "/post/" + code; }
+  function randomCode() {
+    var chars = "abcdefghjkmnpqrstuvwxyz23456789", s = "";
+    var a = new Uint32Array(6); crypto.getRandomValues(a);
+    for (var i = 0; i < 6; i++) s += chars[a[i] % chars.length];
+    return s;
+  }
+  function copy(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText)
+      return navigator.clipboard.writeText(text).then(function () { msg("Copied: " + text, "ok"); });
+    var t = document.createElement("textarea"); t.value = text; document.body.appendChild(t);
+    t.select(); document.execCommand("copy"); t.remove(); msg("Copied: " + text, "ok");
+    return Promise.resolve();
+  }
+  function busy(btn, on) { btn.disabled = on; }
+
+  // ---------- setup ----------
+  function loadCfg() {
+    try { cfg = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { cfg = {}; }
+    if (!cfg.owner && location.hostname.endsWith(".github.io")) {
+      cfg.owner = location.hostname.split(".")[0];
+      cfg.repo = location.pathname.split("/")[1] || "";
+    }
+    $("owner").value = cfg.owner || "ScriptySphere";
+    $("repo").value = cfg.repo || "shobaraagemon";
+    $("branch").value = cfg.branch || "main";
+    $("token").value = cfg.token || "";
+  }
+  $("saveSetup").onclick = function () {
+    cfg = {
+      owner: $("owner").value.trim(), repo: $("repo").value.trim(),
+      branch: $("branch").value.trim() || "main", token: $("token").value.trim()
+    };
+    if (!cfg.owner || !cfg.repo || !cfg.token) return msg("Fill in username, repository and token.", "err");
+    try { localStorage.setItem(KEY, JSON.stringify(cfg)); } catch (e) {}
+    fetchLinks();
+  };
+  $("forget").onclick = function () {
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    cfg = {}; links = []; render(); $("token").value = "";
+    msg("Token removed from this browser.", "ok");
+  };
+
+  // ---------- data ----------
+  function fetchLinks() {
+    msg("Loading links...", "info");
+    return api("/contents/links.json?ref=" + encodeURIComponent(cfg.branch) + "&t=" + Date.now())
+      .then(function (f) {
+        sha = f.sha;
+        var parsed = JSON.parse(b64dec(f.content) || "[]");
+        links = Array.isArray(parsed) ? parsed : [];
+        render(); msg("Connected. " + links.length + " link(s) loaded.", "ok");
+        $("howto").open = false;
+      })
+      .catch(function (e) {
+        if (e.status === 404) msg("links.json not found. Upload it to the repository root first, and check the repository name and branch.", "err");
+        else if (e.status === 401) msg("The token is invalid or expired. Create a new one.", "err");
+        else msg("Could not load links: " + e.message, "err");
+      });
+  }
+  function save(newLinks, message) {
+    var body = {
+      message: message, branch: cfg.branch, sha: sha,
+      content: b64enc(JSON.stringify(newLinks, null, 2) + "\n")
+    };
+    return api("/contents/links.json", { method: "PUT", body: JSON.stringify(body) })
+      .then(function (r) { sha = r.content.sha; links = newLinks; render(); });
+  }
+  // Re-fetch the newest file, apply a change, and save (avoids overwriting other edits)
+  function mutate(fn, message) {
+    return api("/contents/links.json?ref=" + encodeURIComponent(cfg.branch) + "&t=" + Date.now())
+      .then(function (f) {
+        sha = f.sha;
+        var current = JSON.parse(b64dec(f.content) || "[]");
+        var next = fn(current);
+        return save(next, message);
+      });
+  }
+
+  // ---------- UI ----------
+  function render() {
+    var q = $("search").value.trim().toLowerCase();
+    var ul = $("items"); ul.innerHTML = "";
+    var shown = links.slice().reverse().filter(function (l) {
+      return !q || (l.code + " " + l.url + " " + (l.title || "")).toLowerCase().indexOf(q) > -1;
+    });
+    shown.forEach(function (l) {
+      var li = document.createElement("li"); li.className = "item";
+      var s = document.createElement("div"); s.className = "short"; s.textContent = shortUrl(l.code);
+      var t = document.createElement("div"); t.textContent = l.title || "";
+      var u = document.createElement("div"); u.className = "long"; u.textContent = l.url;
+      var a = document.createElement("div"); a.className = "actions";
+      var c = document.createElement("button"); c.className = "ghost"; c.textContent = "Copy";
+      c.onclick = function () { copy(shortUrl(l.code)); };
+      var d = document.createElement("button"); d.className = "danger"; d.textContent = "Delete";
+      d.onclick = function () {
+        if (!confirm("Delete " + shortUrl(l.code) + " ?")) return;
+        busy(d, true);
+        mutate(function (cur) { return cur.filter(function (x) { return x.code !== l.code; }); }, "Delete short link " + l.code)
+          .then(function () { msg("Deleted. The page is removed after the site republishes (about a minute).", "ok"); })
+          .catch(function (e) { busy(d, false); msg("Delete failed: " + e.message, "err"); });
+      };
+      a.appendChild(c); a.appendChild(d);
+      li.appendChild(s); if (l.title) li.appendChild(t); li.appendChild(u); li.appendChild(a);
+      ul.appendChild(li);
+    });
+    $("count").textContent = links.length ? "(" + links.length + ")" : "";
+    $("empty").style.display = shown.length ? "none" : "block";
+  }
+  $("search").oninput = render;
+
+  var lastShort = "";
+  $("copyNew").onclick = function () { copy(lastShort); };
+
+  $("create-btn").onclick = function () {
+    var btn = $("create-btn");
+    if (!cfg.token) return msg("Connect to GitHub first (section above).", "err");
+    var url = $("url").value.trim();
+    var code = $("code").value.trim().toLowerCase();
+    if (!/^https?:\/\//i.test(url)) return msg("The long URL must start with http:// or https://", "err");
+    if (code && !CODE_RE.test(code)) return msg("Custom ending can use lowercase letters, numbers, - and _ only.", "err");
+
+    var entry = { code: code, url: url };
+    if ($("title").value.trim()) entry.title = $("title").value.trim();
+    if ($("desc").value.trim()) entry.description = $("desc").value.trim();
+    if ($("image").value.trim()) entry.image = $("image").value.trim();
+
+    busy(btn, true); msg("Saving...", "info");
+    var finalCode;
+    mutate(function (cur) {
+      var taken = {}; cur.forEach(function (l) { taken[l.code] = 1; });
+      if (code) {
+        if (taken[code]) throw new Error("The ending \"" + code + "\" is already used.");
+        finalCode = code;
+      } else {
+        do { finalCode = randomCode(); } while (taken[finalCode]);
+      }
+      entry.code = finalCode;
+      cur.push(entry);
+      return cur;
+    }, "Add short link " + (code || "(auto)"))
+    .then(function () {
+      lastShort = shortUrl(finalCode);
+      $("resultUrl").textContent = lastShort;
+      $("result").style.display = "block"; $("result").focus();
+      msg("Created.", "ok");
+      ["url", "code", "title", "desc", "image"].forEach(function (id) { $(id).value = ""; });
+      copy(lastShort).catch(function () {});
+    })
+    .catch(function (e) { msg("Could not save: " + e.message, "err"); })
+    .then(function () { busy(btn, false); });
+  };
+
+  loadCfg();
+  if (cfg.token) fetchLinks(); else msg("Connect to GitHub to start.", "info");
+})();
+</script>
+</body>
+</html>
